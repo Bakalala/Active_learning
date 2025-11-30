@@ -158,7 +158,7 @@ class Config:
         self.acquisition_rounds = acquisition_rounds
         self.mc_passes = 20
         self.score_subset = 5000
-        self.seed = 42 # Used 42 and 10
+        self.seed = 10 # Used 42 and 10
         
 
 
@@ -274,8 +274,8 @@ def run_active_learning_ISIC(train_full, labeled_idx, unlabeled_idx, test_idx, C
 
 def main():
 
-    acquisition_rounds = 4
-    num_runs = 3          # <--- how many independent runs you want
+    acquisition_rounds = 5
+    num_runs = 3        
 
     train_img_dir = os.path.join(ISIC_BASE, "ISBI2016_ISIC_Part3B_Training_Data")
     train_csv = os.path.join(ISIC_BASE, "ISBI2016_ISIC_Part3B_Training_GroundTruth.csv")

@@ -86,7 +86,7 @@ def plot_isic_histories(all_histories, initial_pos=20, title_prefix="ISIC 2016")
         m for m in raw_methods if m not in preferred_order
     ]
     display_name = {
-        "random": "uniform",
+        "random": "random",
         "bald": "BALD",
     }
 
