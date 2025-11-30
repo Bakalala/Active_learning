@@ -2,3 +2,4 @@
 /data
 /venv
 /active_learning
+.DS_Store
