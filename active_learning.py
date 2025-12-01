@@ -372,7 +372,7 @@ def mc_scores(model, dataset_subset, device, T=20, batch_size=256, mode="entropy
             H_each = -(p_btC * (p_btC + eps).log()).sum(dim=2)            # (B, T)
             scores = H_mean - H_each.mean(dim=1)                           # (B,)
 
-        elif mode == "bald":
+        elif mode == "var":
             # Variation ratio = 1 - (1/T) * max_c count_t [argmax_t == c]
             # Discrete predictions per MC pass: (B, T)
             y_bt = p_btC.argmax(dim=2)
@@ -408,7 +408,7 @@ def acquire_once(model, train_set, unlabeled_idx, *, device, T, k, score_subset,
       top = torch.topk(scores, k=min(k, len(cand))).indices.tolist()
       picked = [cand[i] for i in top]
     elif acquisition == 'var':
-      scores = mc_scores(model, candidates, device, T=T, batch_size=test_batch, mode = 'bald')
+      scores = mc_scores(model, candidates, device, T=T, batch_size=test_batch, mode = 'var')
       top = torch.topk(scores, k=min(k, len(cand))).indices.tolist()
       picked = [cand[i] for i in top]
 
