@@ -385,7 +385,7 @@ def mc_scores(model, dataset_subset, device, T=20, batch_size=256, mode="entropy
 
             scores = 1.0 - max_counts.float() / T                         # (B,)
         else:
-            raise ValueError(f"Unknown mode: {mode}. Use 'entropy' or 'bald'.")
+            raise ValueError(f"Unknown mode: {mode}. Use 'entropy' or 'bald' or 'var.")
 
         out.append(scores.cpu())
 
