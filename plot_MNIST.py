@@ -18,14 +18,14 @@ plot_all_histories(
     all_hist,
     metric="test_acc",
     save_path="plots/MNIST_test_acc_vs_labeled.png",   # relative path
-    y_lim = .85
+    y_lim = .8
 )
 
 plot_all_rounds(
     all_hist,
     metric="test_acc",
     save_path="plots/MNIST_test_acc_vs_round.png",     # relative path
-    y_lim = .85
+    y_lim = .8
 
 )
 

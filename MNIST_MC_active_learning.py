@@ -26,7 +26,7 @@ class Config:
         self.data_root = "./data"
 
         # ckpt file unique to strategy
-        self.ckpt_path = f"./active_learning/mnist_bin_{acq}.ckpt"
+        self.ckpt_path = f"./active_learning/mnist_mc_{acq}.ckpt"
 
 
 def main():
@@ -54,11 +54,16 @@ def main():
     print(val_idx)
 
     acq_methods = ["random","entropy","bald", "var"]
+    mc_count = [1, 5, 10, 20]
     all_histories = {}
+    acq = 'bald'
 
-    for s in acq_methods:
+    for s in mc_count:
         print('Training for {} acquisition strategy'.format(s))
-        CFG = Config(acq = s, acquisition_rounds=30)
+        CFG = Config(acq = acq, acquisition_rounds=30)
+        CFG.mc_passes = s
+        CFG.ckpt_path = f"./active_learning/mnist_mc_{s}_{acq}.ckpt"
+
         set_seed(CFG.seed)
         labeled_idx,val_idx, unlabeled_idx = balanced_initial_split(train_set,CFG.initial_labeled,CFG.validation_set_size)
         model = MNIST_CNN()

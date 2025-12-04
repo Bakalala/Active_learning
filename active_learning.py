@@ -434,7 +434,10 @@ def active_learning_loop(model, train_set, test_set,
         "train_loss": [],
         "val_acc": [],
         "test_acc": [],
+        "acquired_counts": [],
     }
+
+    n_classes = 10
 
     start_round = 0
     resume_phase = 'post_acq'
@@ -520,6 +523,11 @@ def active_learning_loop(model, train_set, test_set,
             k=CFG.acquisition_size, score_subset=CFG.score_subset,
             test_batch=CFG.test_batch_size, acquisition = CFG.acq
         )
+
+        picked_labels = train_set.targets[picked]  # tensor of shape [len(picked)]
+        counts = torch.bincount(picked_labels, minlength=n_classes).tolist()
+        history["acquired_counts"].append(counts)
+        
         labeled_idx += picked
         print(f"acquired {len(picked)} → labeled={len(labeled_idx)}  unlabeled={len(unlabeled_idx)}")
 
