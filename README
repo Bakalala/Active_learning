@@ -1,1 +1,10 @@
 HELLOOO
+
+Enviromenet can be setup using the requirements.txt file
+
+run MNIST_active_learning.py for MNIST
+run ISIC_active_learning.py for ISIC
+
+Common code in active_learning.py
+
+plotting code is all over the place, ngl was rushing to get things done
